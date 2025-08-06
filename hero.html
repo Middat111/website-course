@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Middat's Coffee Spot</title>
+  <link rel="icon"  href="C:\Users\bt\Downloads\coffee cup.jpg"  type="image/jpeg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #140c08;
+      color: white;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+   .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background-color: rgba(20, 12, 8, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      cursor: default;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .navbar .logo .coffee-icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+    .navbar nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .navbar nav a {
+      color: white;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .navbar nav a:hover {
+      color: #d9a87c;
+    }
+    .navbar nav a.home.active, 
+    .navbar nav a.home {
+      border: 1.8px solid white;
+      background-color: transparent;
+      padding-left: 0.9rem;
+      padding-right: 0.9rem;
+    }
+    .navbar nav a.home.active {
+      background-color: white;
+      color: #4b2e09;
+      font-weight: 700;
+    }
+    .btn-order {
+      padding: 0.45rem 1.4rem;
+      border-radius: 9999px;
+      background-color: white;
+      color: #4b2e09;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn-order:hover {
+      background-color: #d9a87c;
+      color: #33210f;
+    }
+    .hero-content {
+      display: flex;
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 2rem 6rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap-reverse;
+      z-index: 10;
+      position: relative;
+    }
+    .text-content {
+      max-width: 540px;
+    }
+    .text-content h1 {
+      font-size: 2.75rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 640px) {
+      .text-content h1 {
+        font-size: 3.75rem;
+      }
+    }
+    .text-content p {
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: #d6d6d6;
+      margin-bottom: 2.4rem;
+      line-height: 1.5;
+    }
+
+    /* Buttons group */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-buy {
+      background-color: #f1c7a2;
+      color: #4b2e09;
+      font-weight: 600;
+      padding: 0.75rem 2.2rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-buy:hover {
+      background-color: #d9a87c;
+    }
+    .btn-cafes {
+      border: 1.8px solid #f1c7a2;
+      background-color: transparent;
+      color: #f1c7a2;
+      font-weight: 600;
+      padding: 0.75rem 2.2rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-cafes:hover {
+      background-color: #f1c7a2;
+      color: #4b2e09;
+    }
+    .hero-image-wrapper {
+      flex: 1 1 320px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      max-width: 480px;
+      min-width: 280px;
+      z-index: 5;
+    }
+    .hero-image-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 50px 15px rgba(255 255 255 / 0.03);
+      user-select: none;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+    }
+    .smoke {
+      position: absolute;
+      top: -50px;
+      right: 45px;
+      width: 75px;
+      height: 130px;
+      pointer-events: none;
+      user-select: none;
+      filter: brightness(110%);
+      animation: smokeUp 6s ease-in-out infinite;
+      opacity: 0.8;
+    }
+    @keyframes smokeUp {
+      0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-20px) scale(1.05) rotate(3deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+    }
+    .info-bar {
+      background-color: rgba(20, 12, 8, 0.9);
+      color: #d6d6d6;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 0.9rem 1rem;
+      border-top: 1px solid #3b2c1c;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .info-item svg {
+      width: 20px;
+      height: 20px;
+      fill: #d6d6d6;
+      opacity: 0.8;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 650px) {
+      .hero-content {
+        justify-content: center;
+        text-align: center;
+        padding: 2.5rem 1.5rem 5rem;
+      }
+      .hero-image-wrapper {
+        max-width: 320px;
+        order: -1;
+        margin-bottom: 2.5rem;
+      }
+      .text-content {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" role="banner" aria-label="Crane Coffee hero section">
+    <header class="navbar" role="navigation" aria-label="Primary navigation">
+      <div class="logo" aria-label="Crane Coffee logo">
+        Middat
+        <svg xmlns="http://www.w3.org/2000/svg" class="coffee-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 3c-1.657 0-3 1.343-3 3v9a4 4 0 004 4h7a5 5 0 001-9.9V6c0-1.105-.895-2-2-2H6zm1 2h6a1 1 0 110 2H7a1 1 0 110-2zm6 7H7a2 2 0 000 4h6a3 3 0 000-6z"></path>
+        </svg>
+        ffee
+      </div>
+      <nav role="menubar">
+        <a href="#" class="home active" role="menuitem" aria-current="page">Home</a>
+        <a href="#" role="menuitem">Our Coffee</a>
+        <a href="#" role="menuitem">Our Cafes</a>
+        <a href="#" role="menuitem">About</a>
+      </nav>
+      <button class="btn-order" aria-label="Order Now">Order Now</button>
+    </header>
+
+    <div class="hero-content">
+      <div class="text-content">
+        <h1>Start Your Day With<br />Our Amazing Coffee</h1>
+        <p>Discover the essence of esquisite coffee beans, <br />With each bean naturally dried and proccessed under the best conditions.</p>
+        <div class="btn-group">
+          <button class="btn-buy" aria-label="Buy Coffee">Buy Coffee</button>
+          <button class="btn-cafes" aria-label="Explore Our Cafes">Our Cafes</button>
+        </div>
+      </div>
+      <div class="hero-image-wrapper" aria-hidden="true">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/341c67ce-b81c-4a2f-8b3e-d9a4c29dd6df.png" alt="Elegant white coffee cup on a saucer steaming, surrounded by roasted coffee beans on burlap sack under warm studio lighting" onerror="this.style.display='none'" />
+        <svg class="smoke" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64" aria-hidden="true" focusable="false" >
+          <defs>
+            <linearGradient id="gradSmoke" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="white" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="white" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#gradSmoke)" d="M16 0c-4 6-8 18-4 26s4 14 4 38h4c0-24 2-30 4-38s-2-20-8-26z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="info-bar" aria-label="Service benefits">
+      <div class="info-item" aria-label="Free Delivery">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M3 9v11h18v-6l-4-5-2 3-1-2-2 3-3-4-4 4z"/></svg>
+        Free Delivery
+      </div>
+      <div class="info-item" aria-label="Ten percent off">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M10 3H3v7h7V3zm2 9H3v7h9v-7zm6-7h-7v7h7V5zm-1 5l-2-2-1 1 2 2-2 2 1 1 2-2 2 2 1-1-2-2 2-2-1-1-2 2z"/></svg>
+        10 OFF
+      </div>
+      <div class="info-item" aria-label="Free Stickers">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M22 12l-7-9v4H8v10h7v4l7-9zM12 14l-2-2 2-2 2 2-2 2z"/></svg>
+        Free Stickers
+      </div>
+      <div class="info-item" aria-label="Vouchers Accepted Here">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M4 6h16v12H4zM2 4v16h20V4H2z"/></svg>
+        Vouchers Accepted Here
+      </div>
+      <div class="info-item" aria-label="Ten percent off">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M10 3H3v7h7V3zm2 9H3v7h9v-7zm6-7h-7v7h7V5zm-1 5l-2-2-1 1 2 2-2 2 1 1 2-2 2 2 1-1-2-2 2-2-1-1-2 2z"/></svg>
+        10% OFF
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
